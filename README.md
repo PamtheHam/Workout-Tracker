@@ -4,10 +4,6 @@
 
 This workout tracker was created using a Mongo database with a Mongoose schema and handles routes with Express. The user is able to add exercises to their most recent workout plan, add a new workout plan, and view the combined weight and total duration of multiple exercises from the past 7 workouts on their stats page.
 
-<!-- The application uses the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for Views, the [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a MySQL database for Models, and an [Express.js](https://expressjs.com/) API for Controllers. -->
-
----
-
 ## User Story
 
 ```
@@ -19,7 +15,8 @@ If the exercise is a cardio exercise, I should be able to track my distance trav
 
 ## Link to Deployed Application
 
-[Deployed Application]()
+[Deployed Application](https://pamtheham-workout-tracker.herokuapp.com/)
+
 ![Screenshot of app]()
 
 ## Table of Contents
@@ -48,18 +45,6 @@ If the exercise is a cardio exercise, I should be able to track my distance trav
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)&nbsp;
 ![MySQL](https://img.shields.io/badge/MySQL-coral?style=for-the-badge&logo=mysql&logoColor=darkblue)&nbsp;
 ![Sequelize](https://img.shields.io/badge/Sequelize-blue?style=for-the-badge&logo=Sequelize)&nbsp;
-
-## Usage
-
--
-
-## Challenges
-
--
-
-## Future Development
-
--
 
 ## Contact
 
