@@ -4,14 +4,13 @@ const db = require("../../models");
 // gets all seeded workouts
 router.get("/", async (req, res) => {
   try {
-    const workouts = await db.Workout.find({});
-    res.status(200).json(workouts);
+    const getWorkouts = await db.Workout.find({});
+    res.status(200).json(getWorkouts);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// lets user post a new workout
 router.post("/", async ({ body }, res) => {
   try {
     const newWorkout = await db.Workout.create(body);
@@ -21,7 +20,6 @@ router.post("/", async ({ body }, res) => {
   }
 });
 
-// lets user update a workout
 router.put("/:id", async (req, res) => {
   try {
     const updateWorkout = await db.Workout.findByIdAndUpdate(
