@@ -20,11 +20,11 @@ router.post("/api/workouts", async ({ body }, res) => {
   }
 });
 
-router.put("/api/workouts/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updateWorkout = await db.Workout.findByIdAndUpdate(
-      req.params.id,
-      { $push: { exercises: req.body } },
+      params.id,
+      { $push: { exercises: body } },
       { new: true }
     );
     res.status(200).json(updateWorkout);
@@ -33,7 +33,7 @@ router.put("/api/workouts/:id", async (req, res) => {
   }
 });
 
-router.get("/api/workouts/range", async ({ res }) => {
+router.get("/range", async ({ res }) => {
   try {
     const workouts = await db.Workout.aggregate([
       { $addfields: { totalDuration: { $sum: "$exercises.duration" } } },
