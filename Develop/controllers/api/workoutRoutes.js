@@ -1,28 +1,30 @@
 const router = require("express").Router();
-const db = require("../../models");
+const Workout = require("../../models/Workout");
 
 // gets all seeded workouts
-router.get("/api/workouts", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const getWorkouts = await db.Workout.find({});
+    const getWorkouts = await Workout.aggregate([
+      { $addfields: { totalDuration: { $sum: "$exercises.duration" } } },
+    ]);
     res.status(200).json(getWorkouts);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post("/api/workouts", async ({ body }, res) => {
+router.post("/", async ({ body }, res) => {
   try {
-    const newWorkout = await db.Workout.create(body);
-    res.status(newWorkout);
+    const newWorkout = await Workout.create(body);
+    res.status(200).json(newWorkout);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", async ({ params, body }, res) => {
   try {
-    const updateWorkout = await db.Workout.findByIdAndUpdate(
+    const updateWorkout = await Workout.findByIdAndUpdate(
       params.id,
       { $push: { exercises: body } },
       { new: true }
@@ -33,9 +35,9 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.get("/range", async ({ res }) => {
+router.get("/", async (req, res) => {
   try {
-    const workouts = await db.Workout.aggregate([
+    const workouts = await Workout.aggregate([
       { $addfields: { totalDuration: { $sum: "$exercises.duration" } } },
     ]);
     res.status(200).json(workouts);
