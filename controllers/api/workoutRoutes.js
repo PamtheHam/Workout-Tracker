@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const Workout = require("../../models/Workout");
+const db = require("../../models");
 
 // gets all seeded workouts
-router.get("/", async (req, res) => {
+router.get("/api/workouts", async (req, res) => {
   try {
-    const getWorkouts = await Workout.aggregate([
-      { $addfields: { totalDuration: { $sum: "$exercises.duration" } } },
+    const getWorkouts = await db.Workout.aggregate([
+      { $addFields: { totalDuration: { $sum: "$exercises.duration" } } },
     ]);
     res.status(200).json(getWorkouts);
   } catch (err) {
@@ -13,20 +13,20 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async ({ body }, res) => {
+router.post("/api/workouts", async ({ body }, res) => {
   try {
-    const newWorkout = await Workout.create(body);
+    const newWorkout = await db.Workout.create(body);
     res.status(200).json(newWorkout);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.put("/:id", async ({ params, body }, res) => {
+router.put("/api/workouts/:id", async (req, res) => {
   try {
-    const updateWorkout = await Workout.findByIdAndUpdate(
-      params.id,
-      { $push: { exercises: body } },
+    const updateWorkout = await db.Workout.findByIdAndUpdate(
+      req.params.id,
+      { $push: { exercises: req.body } },
       { new: true }
     );
     res.status(200).json(updateWorkout);
@@ -35,10 +35,10 @@ router.put("/:id", async ({ params, body }, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/api/workouts/range", async ({ res }) => {
   try {
-    const workouts = await Workout.aggregate([
-      { $addfields: { totalDuration: { $sum: "$exercises.duration" } } },
+    const workouts = await db.Workout.aggregate([
+      { $addFields: { totalDuration: { $sum: "$exercises.duration" } } },
     ]);
     res.status(200).json(workouts);
   } catch (err) {
