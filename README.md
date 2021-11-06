@@ -17,8 +17,6 @@ If the exercise is a cardio exercise, I should be able to track my distance trav
 
 [Deployed Application](https://pamtheham-workout-tracker.herokuapp.com/)
 
-![Screenshot of app]()
-
 ## Table of Contents
 
 - [Description](#description)
