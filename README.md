@@ -15,7 +15,7 @@ If the exercise is a cardio exercise, I should be able to track my distance trav
 
 ## Link to Deployed Application
 
-[Deployed Application](https://pamtheham-workout-tracker.herokuapp.com/)
+[Deployed Application](https://pamtheham-workout-tracker.herokuapp.com/)  https://pamtheham-workout-tracker.herokuapp.com/
 
 ## Table of Contents
 
